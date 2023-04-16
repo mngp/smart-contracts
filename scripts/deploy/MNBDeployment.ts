@@ -14,10 +14,11 @@ async function main() {
   // Constructor arguments
   const tokenName = "Moon Nation Bridge";
   const tokenSymbol = "MNB";
+  const initialSupply = 350_000_000; // Initial supply for current chain
   const supplyCap = 1_000_000_000; // 1 Billion supply
 
-    // Deploy the contract
-  const tokenErc20Contract = await tokenErc20.deploy(tokenName, tokenSymbol, supplyCap);
+  // Deploy the contract
+  const tokenErc20Contract = await tokenErc20.deploy(tokenName, tokenSymbol, initialSupply, supplyCap);
 
   // Wait contract deploy process for complete
   await tokenErc20Contract.deployed();

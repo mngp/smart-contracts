@@ -13,13 +13,13 @@ contract MNBERC20 is Context, ERC20, ERC20Burnable, AccessControl {
 
     uint8 private _decimals = 8;
 
-    constructor(string memory name_, string memory symbol_, uint supplyCap_) ERC20(name_, symbol_) {
+    constructor(string memory name_, string memory symbol_, uint initialSupply_, uint supplyCap_) ERC20(name_, symbol_) {
         require(supplyCap_ > 0, "SupplyCap: Cap should higher than 0");
         _cap = supplyCap_ * (10 ** _decimals);
         _grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _grantRole(MINTER_ROLE, _msgSender());
 
-        _mint(_msgSender(), (supplyCap_ * (10 ** _decimals)));
+        _mint(_msgSender(), (initialSupply_ * (10 ** _decimals)));
     }
 
     function setRoleAdmin(bytes32 role, bytes32 adminRole) public onlyRole(getRoleAdmin(role)) {
