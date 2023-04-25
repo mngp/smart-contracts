@@ -59,7 +59,7 @@ const config: HardhatUserConfig = {
       chainId: 31337
     },
     ethereum: {
-      url: "https://mainnet.infura.io/v3/",
+      url: "https://cloudflare-eth.com",
       accounts: mainnetAccounts,
       chainId: 1
     },
@@ -72,7 +72,7 @@ const config: HardhatUserConfig = {
       url: "https://polygon-rpc.com/",
       accounts: mainnetAccounts,
       chainId: 137,
-      gasPrice: 260_000000000
+      gasPrice: 500_000000000
     },
     avaxc: {
       url: "https://api.avax.network/ext/bc/C/rpc",
@@ -100,7 +100,7 @@ const config: HardhatUserConfig = {
     currency: "USD"
   },
   etherscan: {
-    apiKey: process.env.POLYGONSCAN_API_KEY
+    apiKey: process.env.SNOWTRACE_API_KEY
   }
 };
 
