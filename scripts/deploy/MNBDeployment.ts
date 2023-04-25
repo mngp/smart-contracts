@@ -12,7 +12,7 @@ async function main() {
   });
 
   // Constructor arguments
-  const tokenName = "Moon Nation Bridge";
+  const tokenName = "MN Bridge";
   const tokenSymbol = "MNB";
   const initialSupply = 350_000_000; // Initial supply for current chain
   const supplyCap = 1_000_000_000; // 1 Billion supply
