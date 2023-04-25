@@ -7,16 +7,17 @@ async function main() {
   console.log(`Signer account : ${signerAccount.address}`);
 
   // We get the contract to deploy
-  const tokenErc20 = await ethers.getContractFactory("Tether", {
+  const tokenErc20 = await ethers.getContractFactory("ERC20Token", {
     signer: signerAccount
   });
 
   // Constructor arguments
-  const tokenName = "Tether";
-  const tokenSymbol = "USDT";
+  const tokenName = "MNB Seed Round Sale Token";
+  const tokenSymbol = "MNB.p";
+  const initialSupply = 0;
 
   // Deploy the contract
-  const tokenErc20Contract = await tokenErc20.deploy(tokenName, tokenSymbol);
+  const tokenErc20Contract = await tokenErc20.deploy(tokenName, tokenSymbol, initialSupply);
 
   // Wait contract deploy process for complete
   await tokenErc20Contract.deployed();
