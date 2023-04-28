@@ -80,5 +80,5 @@ interface IERC20Mintable {
         uint256 amount
     ) external returns (bool);
 
-    function mint(address account, uint256 amount) external returns (bool);
+    function mint(address account, uint256 amount) external;
 }
