@@ -18,7 +18,7 @@
   "devDependencies": {
     "@nomiclabs/hardhat-waffle": "^2.0.5",
     "@openzeppelin/hardhat-upgrades": "^1.22.1",
-    "@remix-project/remixd": "^0.6.13",
+    "@remix-project/remixd": "0.6.5",
     "@typechain/hardhat": "^6.1.5",
     "@types/chai": "^4.3.4",
     "@types/jest": "^29.5.0",
