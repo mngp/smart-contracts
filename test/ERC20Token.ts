@@ -8,7 +8,6 @@ describe("ERC20Token", function() {
   const tokenName = "Dummy Token";
   const tokenSymbol = "DMY";
   const initialSupply = 5_000; // Initial supply for current chain
-  const supplyCap = 25_000; // 1 Billion supply
 
   let erc20: Contract;
   let erc20Factory: ContractFactory;
@@ -22,7 +21,7 @@ describe("ERC20Token", function() {
     erc20Factory = await ethers.getContractFactory("ERC20Token");
 
     // Deploy the contract
-    erc20 = await erc20Factory.deploy(tokenName, tokenSymbol, initialSupply, supplyCap);
+    erc20 = await erc20Factory.deploy(tokenName, tokenSymbol, initialSupply);
 
     // Wait contract deploy process for complete
     await erc20.deployed();
@@ -57,21 +56,6 @@ describe("ERC20Token", function() {
 
     await erc20.mint(deployer.address, 500);
     await expect(await erc20.balanceOf(deployer.address), "Mint").to.equal(ownerBalance);
-  });
-
-  it("Supply Cap Functionality", async function() {
-    const mintedSupply = await erc20.totalSupply();
-    const cap = await erc20.cap();
-    const mintableSupply = cap.sub(mintedSupply);
-
-    // Mint with deployer address
-    await erc20.connect(deployer).mint(deployer.address, mintableSupply);
-    await expect(await erc20.totalSupply()).to.equal(cap);
-
-    // Should be reverted with "Cap exceeded"
-    await expect(
-      erc20.connect(deployer).mint(deployer.address, 100)
-    ).to.be.revertedWith("SupplyCap: cap exceeded");
   });
 
   it("Access Control Functionality", async function() {

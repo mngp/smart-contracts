@@ -7,14 +7,11 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
 contract ERC20Token is Context, ERC20, ERC20Burnable, AccessControl {
-    uint256 private immutable _cap;
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
     uint8 private _decimals = 8;
 
-    constructor(string memory name_, string memory symbol_, uint initialSupply_, uint supplyCap_) ERC20(name_, symbol_) {
-        require(supplyCap_ > 0, "SupplyCap: Cap should higher than 0");
-        _cap = supplyCap_ * (10 ** _decimals);
+    constructor(string memory name_, string memory symbol_, uint initialSupply_) ERC20(name_, symbol_) {
         _grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _grantRole(MINTER_ROLE, _msgSender());
 
@@ -30,18 +27,12 @@ contract ERC20Token is Context, ERC20, ERC20Burnable, AccessControl {
     }
 
     /**
-     * @dev Returns the cap on the token's total supply.
-     */
-    function cap() public view virtual returns (uint256) {
-        return _cap;
-    }
-
-    /**
      * @dev See {ERC20-_mint}.
      */
     function _mint(address account, uint256 amount) internal virtual override {
-        require(ERC20.totalSupply() + amount <= cap(), "SupplyCap: cap exceeded");
-        super._mint(account, amount);
+        if (amount > 0) {
+            super._mint(account, amount);
+        }
     }
 
     function mint(address account, uint256 amount) public onlyRole(MINTER_ROLE) {
