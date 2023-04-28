@@ -159,7 +159,7 @@ contract Presale is Ownable, ReentrancyGuard {
 
         // Update state variables (statistic, maxContribution, etc...)
         globalAssetCounter += assetAmount;
-        accountContribution[_msgSender()][pairId] += assetAmount;
+        accountContribution[_msgSender()][pairId] += processableAmount;
         pairStats.assetTotal += assetAmount;
         pairStats.quoteAssetTotal += processableAmount;
         pairStatistic[pairId] = pairStats;
