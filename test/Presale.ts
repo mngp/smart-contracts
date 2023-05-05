@@ -22,7 +22,7 @@ describe("Presale", function() {
     const erc20Factory = await ethers.getContractFactory("ERC20Token");
 
     // Deploy the contract
-    USDT = await erc20Factory.deploy("Tether USD", "USDT", 50_000_000, 50_000_000);
+    USDT = await erc20Factory.deploy("Tether USD", "USDT", 50_000_000);
 
     // Wait contract deploy process for complete
     await USDT.deployed();
