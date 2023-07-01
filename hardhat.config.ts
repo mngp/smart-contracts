@@ -100,7 +100,7 @@ const config: HardhatUserConfig = {
     currency: "USD"
   },
   etherscan: {
-    apiKey: process.env.SNOWTRACE_API_KEY
+    apiKey: process.env.BSCSCAN_API_KEY
   }
 };
 
